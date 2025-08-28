@@ -4,5 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiRequest {
+  private theServerURL : string = "https://api.openai.com/v1/chat/completions"
+
   
 }
