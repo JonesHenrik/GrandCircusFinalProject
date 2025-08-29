@@ -15,5 +15,12 @@ export class ApiRequest {
     return result;
     }
 
-  
+  async addPollutionResult(newResult : any) : Promise<any>{
+    const headers = new HttpHeaders({
+      'Content-Type' : 'application/json'
+      });
+    return lastValueFrom(this.theServer.post(this.theServerURL, newResult, {headers}));
+    }
+
+
 }
