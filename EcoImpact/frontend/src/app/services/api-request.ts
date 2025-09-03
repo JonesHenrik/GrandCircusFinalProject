@@ -4,8 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiRequest {
-  private theServerURL : string = "https://api.openai.com/v1/chat/completions"
+  const API_URL: string = "https://api.openai.com/v1/chat/completions"
+  const ApiKey = ""
 
+
+/*
   thePollutionResults : any[] = []
 
   constructor(private theServer:HttpClient) {}
@@ -21,6 +24,6 @@ export class ApiRequest {
       });
     return lastValueFrom(this.theServer.post(this.theServerURL, newResult, {headers}));
     }
-
+*/
 
 }
