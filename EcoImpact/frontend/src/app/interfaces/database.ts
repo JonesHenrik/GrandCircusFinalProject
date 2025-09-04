@@ -4,7 +4,4 @@ export interface Database {
   waterW : double
   electricW : double
   co2W : double
-
-
-
 }
