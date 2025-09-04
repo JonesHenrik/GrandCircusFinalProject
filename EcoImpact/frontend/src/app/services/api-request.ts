@@ -1,29 +1,43 @@
 import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiRequest {
-  const API_URL: string = "https://api.openai.com/v1/chat/completions"
-  const ApiKey = ""
+  private readonly API_URL = "https://api.openai.com/v1/chat/completions";
+  private readonly OPENAI_API_KEY = "";
 
+  constructor(private http: HttpClient){}
 
-/*
-  thePollutionResults : any[] = []
-
-  constructor(private theServer:HttpClient) {}
-
-  async getPollutionResults() : Promise<any[]> {
-    const result : any[] = await lastValueFrom(this.theServer.get<any[]>(this.theServerURL))
-    return result;
-    }
-
-  async addPollutionResult(newResult : any) : Promise<any>{
+  sendMessage(userMessage: string): Observable<water: number; electricity: number; carbon: number>{
     const headers = new HttpHeaders({
-      'Content-Type' : 'application/json'
+      'Authorization': `Bearer ${this.OPENAI_API_KEY}`,
+      'Content-Type': 'application/json'
       });
-    return lastValueFrom(this.theServer.post(this.theServerURL, newResult, {headers}));
-    }
-*/
+    const body = {
+      model: 'gpt-3.5-turbo',
+      message: [
+        {role: 'user', content: userMessage}
+        ],
+      max_token: 150,
+      temperature: 0.7
+      };
+    return this.http.post<any>(this.API_URL, body, {headers}).pipe(
+      map((res) => {
+        const totalTokens = res.usage.total_tokens;
 
+        const waterPerThousandTokens = 0.5; //Gallons of water placeholder
+        const electricityPerThousandTokens = 0.003; //kWh of electric placeholder
+        const cabonPerThousandTokens = 0.5; //gram of carbon placeholder
+
+        const water = (totalTokens / 1000) * waterPerThousandTokens;
+        const electricity = (totalTokens / 1000) * electricityPerThousandTokens;
+        const carbon = (totalTokens / 1000) * cabonPerThousandTokens;
+
+        return {water, electricity, carbon};
+        })
+      );
+    }
 }
