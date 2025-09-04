@@ -1,1 +1,12 @@
 <p>response works!</p>
+<div>
+  <input [(ngModel)]="userInput" placeholder="Type your message..."/>
+
+  <button (click)="sendMessage()">Send Message</button>
+
+  <div *ngIf="impact">
+    <p>💧Water Used: {{impact.water | number: '1.2-2'}} gallons</p>
+    <p>⚡️Electricity Used: {{impact.electricity | number: '1.4-4'}} kWh</p>
+    <p>🌎Carbon Used: {{impact.carbon | number: '1.2-2'}} grams</p>
+  </div>
+</div>
