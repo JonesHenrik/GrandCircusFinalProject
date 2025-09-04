@@ -6,9 +6,16 @@ import { Database } from '../../interfaces/database';
   providedIn: 'root'
 })
 export class Data {
+//DM
+private final ApiRequest theApiRequest;
 
-  constructor(private apiRequestService: ApiRequest) {}
+//CNSTR
+  constructor(private apiRequestService: ApiRequest) {
+    this.theApiRequest = apiRequestService;
+    }
 
-get
+func getWaste(waste: {w, e, c}){
+
+  }
 
 }
