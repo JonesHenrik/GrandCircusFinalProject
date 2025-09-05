@@ -1,7 +1,7 @@
 <p>response works!</p>
 <section>
   <h3>Enter your prompt</h3>
-<form>
+<form (ngSubmit)="sendMessage()">
 <div>
   <input type="text" id="request" [(ngModel)]="userInput" name="Type your message..."/>
 

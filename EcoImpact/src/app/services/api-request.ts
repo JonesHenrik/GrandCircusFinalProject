@@ -13,17 +13,18 @@ export class ApiRequest {
 
   sendMessage(userMessage: string): Observable<{water: number; electricity: number; carbon: number}>{
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.OPENAI_API_KEY}`,
-      'Content-Type': 'application/json'
+      "Authorization" : "Bearer ${OPENAI_API_KEY}",
+      "Content-Type": "application/json"
       });
     const body = {
-      model: 'gpt-3.5-turbo',
-      message: [
-        {role: 'user', content: userMessage}
-        ],
-      max_token: 150,
-      temperature: 0.7
-      };
+                       "model": "gpt-3.5-turbo",
+                       "messages": [
+                         {"role": "user",
+                           "content": "What is this?"}
+                         ],
+                       "max_tokens": 150,
+                       "temperature": 0.7
+                       };
     return this.http.post<any>(this.API_URL, body, {headers}).pipe(
       map((res) => {
         const totalTokens = res.usage.total_tokens;
@@ -40,4 +41,4 @@ export class ApiRequest {
         })
       );
     }
-}
+  }
