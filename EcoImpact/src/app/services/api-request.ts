@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, map} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class ApiRequest {
 
   constructor(private http: HttpClient){}
 
-  sendMessage(userMessage: string): Observable<water: number; electricity: number; carbon: number>{
+  sendMessage(userMessage: string): Observable<{water: number; electricity: number; carbon: number}>{
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.OPENAI_API_KEY}`,
       'Content-Type': 'application/json'

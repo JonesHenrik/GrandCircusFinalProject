@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import {ApiRequestService} from './api-request.service';
+import {ApiRequest} from '../../services/api-request';
+import { CommonModule } from '@angular/common';
+import { FormsModule }   from '@angular/forms';
 
 @Component({
   selector: 'app-response',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './response.html',
   styleUrl: './response.css'
 })
@@ -11,7 +13,7 @@ export class Response {
   userInput: string = '';
   impact: {water: number, electricity: number, carbon: number} | null = null;
 
-  constructor(private apiService: ApiRequestService) {}
+  constructor(private apiService: ApiRequest) {}
 
   sendMessage(){
     this.apiService.sendMessage(this.userInput).subscribe({
