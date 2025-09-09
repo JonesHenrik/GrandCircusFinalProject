@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, map} from 'rxjs';
+import {Database} from "../interfaces/database"
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,10 @@ export class ApiRequest {
   private readonly API_URL = "https://api.openai.com/v1/chat/completions";
   private readonly OPENAI_API_KEY = "";
   private bearerAuth = `Bearer  ${this.OPENAI_API_KEY}` // Create authorization variable to use in HTTP Header
+
+  private totalWater : Database = [];
+  private totalElectricity : Database = [];
+  private totalCarbon : Database = [];
 
   constructor(private http: HttpClient){}
 
@@ -30,9 +35,9 @@ export class ApiRequest {
       map((res) => {
         const totalTokens = res.usage.total_tokens;
 
-        const waterPerThousandTokens = 0.5; //Gallons of water placeholder
-        const electricityPerThousandTokens = 0.003; //kWh of electric placeholder
-        const cabonPerThousandTokens = 0.5; //gram of carbon placeholder
+        const waterPerThousandTokens = 500.0; //Milliliters of water placeholder
+        const electricityPerThousandTokens = 0.04; //kWh of electric placeholder
+        const cabonPerThousandTokens = 4.32; //gram of carbon placeholder
 
         const water = (totalTokens / 1000) * waterPerThousandTokens;
         const electricity = (totalTokens / 1000) * electricityPerThousandTokens;
@@ -42,4 +47,7 @@ export class ApiRequest {
         })
       );
     }
-  }
+
+  addWaste(waste : Database){
+    this.totalWater.push(waste)
+    }
