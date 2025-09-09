@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ApiRequest} from '../../services/api-request';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
+import {Database} from "../interfaces/database"
 
 @Component({
   selector: 'app-response',
@@ -25,5 +26,10 @@ export class Response {
         this.impact = null;
         }
       });
+    }
+
+  displayTotal(){
+    this
+
     }
 }
