@@ -8,19 +8,20 @@ import {Observable, map} from 'rxjs';
 export class ApiRequest {
   private readonly API_URL = "https://api.openai.com/v1/chat/completions";
   private readonly OPENAI_API_KEY = "";
+  private bearerAuth = `Bearer  ${this.OPENAI_API_KEY}` // Create authorization variable to use in HTTP Header
 
   constructor(private http: HttpClient){}
 
   sendMessage(userMessage: string): Observable<{water: number; electricity: number; carbon: number}>{
     const headers = new HttpHeaders({
-      "Authorization" : "Bearer ${OPENAI_API_KEY}",
+      "Authorization" : this.bearerAuth,
       "Content-Type": "application/json"
       });
     const body = {
                        "model": "gpt-3.5-turbo",
                        "messages": [
                          {"role": "user",
-                           "content": "What is this?"}
+                           "content": userMessage}
                          ],
                        "max_tokens": 150,
                        "temperature": 0.7
