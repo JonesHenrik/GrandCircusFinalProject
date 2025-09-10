@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/v1")
 public class ResponsesController {
 //DM
-  ResponsesController theResponseService;
+  private final ResponsesController theResponseService;
 
   //CNSTR
   public ResponsesController(ResponseService theResponseService){
@@ -28,7 +28,7 @@ public class ResponsesController {
   }
 
   @PostMapping("/records")
-  public Response addResponse(Response aResponse){
+  public Response addResponse(@RequestBody Response aResponse){
     return theResponseService.addResponse(aResponse);
   }
   //For Later update: public Response updateResponse(Response aResponse);
