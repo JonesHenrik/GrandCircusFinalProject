@@ -1,3 +1,4 @@
+/*
 import { Injectable, OnInit } from '@angular/core';
 import { ApiRequest } from '../../services/api-request';
 import { Record } from '../../interfaces/record';
@@ -32,3 +33,4 @@ newRecord : Record = {
     this.theRecords = await this.Database.getRecords();
   }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient }         from '@angular/common/http';
 import { HttpHeaders }        from '@angular/common/http';
@@ -26,3 +27,4 @@ async addRecord(newRecord : any) : Promise<any>{
 
   }
 }
+*/

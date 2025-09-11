@@ -1,6 +1,6 @@
 package com.Server.dao;
 
-import com.Server.model.Response;
+import com.Server.model.Record;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +20,19 @@ private final ResponseRepo responseRepo;
 
 
     @Override
-  public List<Response> getAllResponses(){
+  public List<Record> getAllResponses(){
   return responseRepo.findAll();
     }
 
   @Override
   @Transactional (readOnly = true)
-  Optional<Response> getResponseByID(int pkey){
+  Optional<Record> getResponseByID(int pkey){
   return responseRepo.findById(pkey);
   }
 
   @Override
   @Transactional
-  public Response addResponse(Response aResponse){
+  public Record addResponse(Response aResponse){
   return responseRepo.save(aResponse);
   }
 

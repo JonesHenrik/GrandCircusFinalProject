@@ -1,4 +1,4 @@
-export interface Record{
+export interface data{
   id? : number
   response : string
   waterW : number

@@ -3,32 +3,32 @@ package com.Server.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table
-public class Response{
+@Table(name = "records")
+public class Record{
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @Column(name = " ")
+  @Column(name = "response")
   private String response;
 
-  @Column(name = " ")
+  @Column(name = "waterW")
   private double waterW;
 
-  @Column(name = " ")
+  @Column(name = "electricW")
   private double electricW;
 
-  @Column(name = " ")
+  @Column(name = "co2W")
   private double co2W;
 
   @Version
   private Long version;
 
   //CNSTR
-  public Response(){}
+  public Record(){}
 
-  public Response(int id, String response, double waterW, double electricW, double co2W, Long version) {
+  public Record(int id, String response, double waterW, double electricW, double co2W, Long version) {
     this.id = id;
     this.response = response;
     this.waterW = waterW;
@@ -90,26 +90,28 @@ public class Response{
   }
 
 
-  @java.lang.Override
-  public java.lang.String toString() {
-    return "Response{" +
-      "id=" + id +
-      ", response='" + response + '\'' +
-      ", waterW=" + waterW +
-      ", electricW=" + electricW +
-      ", co2W=" + co2W +
-      ", version=" + version +
-      '}';
-  }
-
   public boolean equals(Object object) {
-    if (!(object instanceof Response)) return false;
+    if (object == null || getClass() != object.getClass()) return false;
     if (!super.equals(object)) return false;
-    Response response1 = (Response) object;
-    return getId() == response1.getId() && java.lang.Double.compare(getWaterW(), response1.getWaterW()) == 0 && java.lang.Double.compare(getElectricW(), response1.getElectricW()) == 0 && java.lang.Double.compare(getCo2W(), response1.getCo2W()) == 0 && java.util.Objects.equals(getResponse(), response1.getResponse()) && java.util.Objects.equals(getVersion(), response1.getVersion());
+    Record record = (Record) object;
+    return id == record.id && java.lang.Double.compare(waterW, record.waterW) == 0 && java.lang.Double.compare(electricW, record.electricW) == 0 && java.lang.Double.compare(co2W, record.co2W) == 0 && java.util.Objects.equals(response, record.response) && java.util.Objects.equals(version, record.version);
   }
 
   public int hashCode() {
-    return Objects.hash(super.hashCode(), getId(), getResponse(), getWaterW(), getElectricW(), getCo2W(), getVersion());
+    return Objects.hash(super.hashCode(), id, response, waterW, electricW, co2W, version);
+  }
+
+  @java.lang.Override
+  public java.lang.String toString() {
+    return "Record{" +
+            "id=" + id +
+            ", response='" + response + '\'' +
+            ", waterW=" + waterW +
+            ", electricW=" + electricW +
+            ", co2W=" + co2W +
+            ", version=" + version +
+            '}';
   }
 }
+
+
