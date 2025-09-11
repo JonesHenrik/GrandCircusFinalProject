@@ -14,13 +14,14 @@ export class Response {
   userInput: string = '';
   impact: {water: number, electricity: number, carbon: number, response: string} | null = null;
  // response:
-  impactHistory: {water: number; electricity: number; carbon: number}[] =[]
+  impactHistory: {water: number; electricity: number; carbon: number; response: string}[] =[]
   constructor(private apiService: ApiRequest) {}
 
   sendMessage(){
     this.apiService.sendMessage(this.userInput).subscribe({
       next: (data) => {
         this.impact = data; //stores environmental impact results
+        this.impactHistory.push(data); // Adding to impactHistory array
         },
       error: (err) => {
         console.error('Error', err);
