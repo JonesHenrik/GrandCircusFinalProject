@@ -11,13 +11,11 @@ export class ApiRequest {
   private readonly OPENAI_API_KEY = "";
   private bearerAuth = `Bearer  ${this.OPENAI_API_KEY}` // Create authorization variable to use in HTTP Header
 
-  private totalWater : Database = [];
-  private totalElectricity : Database = [];
-  private totalCarbon : Database = [];
+  //private totalWaste : Database = [];
 
   constructor(private http: HttpClient){}
 
-  sendMessage(userMessage: string): Observable<{water: number; electricity: number; carbon: number}>{
+  sendMessage(userMessage: string): Observable<{response: string; water: number; electricity: number; carbon: number}>{
     const headers = new HttpHeaders({
       "Authorization" : this.bearerAuth,
       "Content-Type": "application/json"
@@ -42,12 +40,10 @@ export class ApiRequest {
         const water = (totalTokens / 1000) * waterPerThousandTokens;
         const electricity = (totalTokens / 1000) * electricityPerThousandTokens;
         const carbon = (totalTokens / 1000) * cabonPerThousandTokens;
+        const response = res.choices[0].message.content; //Pulling the response from the api
 
-        return {water, electricity, carbon};
+        return {water, electricity, carbon, response};
         })
       );
     }
-
-  addWaste(waste : Database){
-    this.totalWater.push(waste)
-    }
+  }
