@@ -1,5 +1,17 @@
 h3 {
-color: green;
+color: blue;
 text-align: center;
 }
 
+button {
+color: blue;
+text-align: center;
+}
+
+form {
+text-align: center;
+}
+
+list {
+text-align: center;
+}
