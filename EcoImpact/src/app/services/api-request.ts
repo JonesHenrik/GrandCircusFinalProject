@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, map} from 'rxjs';
-import {data} from "../interfaces/data"
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,6 @@ export class ApiRequest {
   private readonly OPENAI_API_KEY = "";
   private bearerAuth = `Bearer  ${this.OPENAI_API_KEY}` // Create authorization variable to use in HTTP Header
 
-  //private totalWaste : Database = [];
 
   constructor(private http: HttpClient){}
 
