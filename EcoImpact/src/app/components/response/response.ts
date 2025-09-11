@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {ApiRequest} from '../../services/api-request';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
-import {Database} from "../interfaces/database"
+
 
 @Component({
   selector: 'app-response',
@@ -12,8 +12,9 @@ import {Database} from "../interfaces/database"
 })
 export class Response {
   userInput: string = '';
-  impact: {water: number, electricity: number, carbon: number} | null = null;
-
+  impact: {water: number, electricity: number, carbon: number, response: string} | null = null;
+ // response:
+  impactHistory: {water: number; electricity: number; carbon: number}[] =[]
   constructor(private apiService: ApiRequest) {}
 
   sendMessage(){
@@ -28,8 +29,16 @@ export class Response {
       });
     }
 
-  displayTotal(){
-    this
+  get totalImpact(){
+    return this.impactHistory.reduce(
+      (totals, current) => {
+        totals.water += current.water;
+        totals.electricity += current.electricity;
+        totals.carbon += current.carbon;
+        return totals;
+        },
+      {water: 0, electricity: 0, carbon: 0} //Initial totals
+      );
 
     }
 }
