@@ -25,7 +25,7 @@ private final RecordRepo recordRepo;
 @Override
   public List<Record> getAllRecords(){
   return recordRepo.findAll();
-    }
+}
 
   @Override
   @Transactional

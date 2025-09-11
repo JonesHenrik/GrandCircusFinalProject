@@ -22,12 +22,13 @@ public class RecordsController {
 
   @GetMapping("/records")
   public List<Record> getAllRecords(){
+    System.out.println("path/records");
     return theRecordsService.getAllRecords();
   }
 
   @GetMapping("/records/{id}")
-  public Optional<Record> getRecordByID(@PathVariable int pkey){
-    return theRecordsService.getRecordByID(pkey);
+  public Optional<Record> getRecordByID(@PathVariable int id){
+    return theRecordsService.getRecordByID(id);
   }
 
   @PostMapping("/records")
