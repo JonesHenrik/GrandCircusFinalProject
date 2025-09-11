@@ -2,6 +2,8 @@ package com.Server.model;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "records")
 public class Record{
