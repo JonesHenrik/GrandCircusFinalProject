@@ -2,19 +2,22 @@ import { Component } from '@angular/core';
 import {ApiRequest} from '../../services/api-request';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
+import { Record } from '../interfaces/record';
 
 
 @Component({
   selector: 'app-response',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule], //Importing these to use built in angular methods in html
   templateUrl: './response.html',
   styleUrl: './response.css'
 })
 export class Response {
-  userInput: string = '';
+  userInput: string = ''; //Stores the user text from html input field
+  //The most recent waste values will be stored in impact as well as the response
+  //Initially null since no values are used yet
   impact: {water: number, electricity: number, carbon: number, response: string} | null = null;
- // response:
-  impactHistory: {water: number; electricity: number; carbon: number; response: string}[] =[]
+ // impactHistory is meant to store the total amount of waste and response to later be added to the database
+  impactHistory: {response: Record; waterW: Record; electricW: Record; co2W: Record}[] =[]
   constructor(private apiService: ApiRequest) {}
 
   sendMessage(){
