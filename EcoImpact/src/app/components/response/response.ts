@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {ApiRequest} from '../../services/api-request';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
-import { Record } from '../interfaces/record';
+import { Record } from '../../interfaces/record';
 
 
 @Component({
@@ -17,7 +17,9 @@ export class Response {
   //Initially null since no values are used yet
   impact: {water: number, electricity: number, carbon: number, response: string} | null = null;
  // impactHistory is meant to store the total amount of waste and response to later be added to the database
-  impactHistory: {response: Record; waterW: Record; electricW: Record; co2W: Record}[] =[]
+  impactHistory: {response: Record["response"]; water: Record["waterW"]; electricity: Record["electricW"]; carbon: Record["co2W"]}[] =[]
+
+
   constructor(private apiService: ApiRequest) {}
 
   sendMessage(){
@@ -25,6 +27,7 @@ export class Response {
       next: (data) => {
         this.impact = data; //stores environmental impact results
         this.impactHistory.push(data); // Adding to impactHistory array
+
         },
       error: (err) => {
         console.error('Error', err);
@@ -43,6 +46,5 @@ export class Response {
         },
       {water: 0, electricity: 0, carbon: 0} //Initial totals
       );
-
     }
 }
