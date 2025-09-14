@@ -9,7 +9,7 @@ import { Record } from '../interfaces/record';
 })
 export class DatabaseService {
  //Need to get the URL
-  private theServerURL : String = "http://localhost:8081/v1/records";
+  private theServerURL = "http://localhost:8081/v1/records";
 
   theRecords : any[] = []
 
@@ -24,7 +24,7 @@ async getRecordByID(id: number) : Promise<Record>{
   }
 
 async addRecord(record: Record): Promise<Record>{
-  return await lastValueFrom(this.theServer.post<Record>(this.theServerURL,record));
+  return await lastValueFrom(this.theServer.post<Record>(this.theServerURL, record));
   }
 
 }
