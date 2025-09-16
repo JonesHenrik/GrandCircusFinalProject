@@ -17,8 +17,8 @@ export class Response {
   //Initially null since no values are used yet
   impact: {water: number, electricity: number, carbon: number, response: string} | null = null;
  // impactHistory is meant to store the total amount of waste and response to later be added to the database
-  impactHistory: Record[] = [];
-  AllTotals : {waterTotal : 0; electricTotal : 0; carbonTotal : 0};
+  impactHistory: any[] = [];
+  AllTotals = {waterTotal : 0, electricTotal : 0, carbonTotal : 0};
 
 
   record: Record = {
@@ -52,23 +52,23 @@ export class Response {
       });
     }
 
-  get totalImpact(){
-    this.impactHistory = this.database.getAllRecords();
-    this.waterTotal = this.impactHistory.reduce(
+  async totalImpact(){
+    this.impactHistory = await this.database.getAllRecords();
+    this.AllTotals.waterTotal = this.impactHistory.reduce(
       (theTotal, current) => {
         theTotal += current.waterW;
         return theTotal;
         },
       {theTotal: 0} //Initial totals
       );
-    this.electricTotal = this.impactHistory.reduce(
+    this.AllTotals.electricTotal = this.impactHistory.reduce(
           (theTotal, current) => {
             theTotal += current.electricW;
             return theTotal;
             },
           {theTotal: 0} //Initial totals
           );
-    this.carbonTotal = this.impactHistory.reduce(
+    this.AllTotals.carbonTotal = this.impactHistory.reduce(
               (theTotal, current) => {
                 theTotal += current.co2W;
                 return theTotal;

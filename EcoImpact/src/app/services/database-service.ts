@@ -15,7 +15,7 @@ export class DatabaseService {
 
   constructor(private theServer: HttpClient){}
 
-async getAllRecords(): Promise<Record[]>{
+async getAllRecords(): Promise<any[]>{
   return await lastValueFrom(this.theServer.get<Record[]>(this.theServerURL));
   }
 
