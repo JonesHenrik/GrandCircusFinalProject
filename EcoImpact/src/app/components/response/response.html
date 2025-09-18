@@ -1,5 +1,5 @@
 <section>
-  <img src ="../assets/images/ecoimpactlogo.png"/>
+  <img src ="../assets/ecoimpactlogo.png"/>
   <h3>Enter your prompt</h3>
 <form (ngSubmit)="sendMessage()">
 <div>
@@ -13,7 +13,7 @@
     <p> 💧  Water Used: {{impact.water | number: '1.2-2'}} milliliters</p>
     <p> ⚡️ Electricity Used: {{impact.electricity | number: '1.4-4'}} kWh</p>
     <p> 🌎 Carbon Used: {{impact.carbon | number: '1.2-2'}} grams</p>
-    <p> 💬 The Response: {{impact.response}}</p>
+    <h4> 💬 The Response: {{impact.response}}</h4>
   </div>
 
     <h3> 🌎 Total Impact of Site on Planet</h3>
